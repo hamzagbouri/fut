@@ -34,6 +34,25 @@
             height: 230px;
             width: 160px;
         }
+        .card2{
+            background-image: url(../img/card.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+           
+        }
+        input{
+          background-color: #161A1D;
+          outline: none;
+          
+        }
+        #modal .inputText{
+          border-radius: 10px;
+          padding-left: 8px;
+          padding-right: 5px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+        }
+        
       </style>
 </head>
 <body class="m-0 p-0 font-primary w-full min-h-screen h-full text-white">
@@ -54,7 +73,7 @@
   </div>
   <div class="min-h-screen h-full w-full bg-[url('../img/bg.png')] bg-cover bg-no-repeat bg-black   py-8 px-8 ">
         <div class="flex justify-between w-full h-16 items-center px-4 ">
-            <div> <button class="bg-[#0E4C82] px-2 rounded-md ">New Player</button></div>
+            <div> <button onclick="document.getElementById('modal').style.display='flex'" class="bg-[#0E4C82] px-2 rounded-md ">New Player</button></div>
             <div class="flex gap-2  items-center  ">
                 <div>
                     <p>Filter BY: 
@@ -78,79 +97,138 @@
             </div>
 
         </div>
-        <div class="w-full bg-[rgba(22,26,29,0.7)] h-full min-h-[500px] rounded-2xl mb-8 flex flex-wrap">
-
-            <div class="card flex flex-col justify-between items-center text-md" >
-             <div class="w-full flex h-[55%]">
-              <div class="w-[60%] h-full flex justify-end items-end ">
-                <div class="flex flex-col items-center justify-center mr-1">
-                  <p>ST</p>
-                  <p>96</p>
-                  <img class="h-6" src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="">
-                </div>
-
-              </div>
-              <div class="h-full w-full flex  justify-end items-end">
-                <div>
-                  <img class="h-24 w-full relative right-4" src="https://cdn.sofifa.net/players/158/023/25_120.png" alt="">
-                </div>
-
-              </div>
-
-
-             </div>
-             <div class="w-full h-[45%]">
-                  <div>
-                    
-                  </div>
-
-             </div>
-            </div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>          
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>    
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>    
-            
+        <div id="players-container" class="w-full bg-[rgba(22,26,29,0.7)] h-full min-h-[500px] rounded-2xl mb-8 flex flex-wrap">
         </div>
      
   </div>
 
-  <div id="modal" class="modal bg-black bg-opacity-75 hidden items-center justify-center fixed inset-0 z-50 ">
-    <div class="w-full m-8 h-auto border border-2 border-black rounded-3xl bg-[#161A1D] relative z-50 md:w-1/4 ">
+  <div id="modal" class="modal bg-black bg-opacity-75 flex items-center justify-center fixed inset-0 z-50 ">
+    <div class="w-full m-8 h-4/5 border border-2 border-black rounded-3xl bg-[#2D353C] relative z-50 md:w-3/5 py-8 ">
       <svg class=" fill-primary absolute cursor-pointer top-0 right-0 pr-4 pt-2 w-10 h-8"    onclick="document.getElementById('modal').style.display='none'" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path   d="M20.48 3.512a11.97 11.97 0 0 0-8.486-3.514C5.366-.002-.007 5.371-.007 11.999c0 3.314 1.344 6.315 3.516 8.487A11.97 11.97 0 0 0 11.995 24c6.628 0 12.001-5.373 12.001-12.001c0-3.314-1.344-6.315-3.516-8.487m-1.542 15.427a9.8 9.8 0 0 1-6.943 2.876c-5.423 0-9.819-4.396-9.819-9.819a9.8 9.8 0 0 1 2.876-6.943a9.8 9.8 0 0 1 6.942-2.876c5.422 0 9.818 4.396 9.818 9.818a9.8 9.8 0 0 1-2.876 6.942z"/><path fill="#5051fa" d="m13.537 12l3.855-3.855a1.091 1.091 0 0 0-1.542-1.541l.001-.001l-3.855 3.855l-3.855-3.855A1.091 1.091 0 0 0 6.6 8.145l-.001-.001l3.855 3.855l-3.855 3.855a1.091 1.091 0 1 0 1.541 1.542l.001-.001l3.855-3.855l3.855 3.855a1.091 1.091 0 1 0 1.542-1.541l-.001-.001z"/></svg>
+      <div class="w-full h-full flex ">
+        <div class=" w-full h-full flex justify-center ">
+          <div class="card2 w-[60%] h-[90%]">
+            <div class="w-full flex h-[52%]">
+              <div class="w-[60%] h-full flex  justify-end pr-3 pt-16 items-center ">
+              
+                <div class="flex flex-col items-center gap-2 justify-center mr-1">
+                  <p>86</p>
+                  <p>LW</p>
+                  <img class="h-6" src="https://cdn.sofifa.net/meta/team/591/120.png" alt="">
+                </div>
+
+              </div>
+              <div class="h-full w-full flex  justify-start items-end">
+                <div>
+                  <img class=" w-full relative right-4" src="https://cdn.sofifa.net/players/230/621/25_120.png" alt="">
+                </div>
+              </div>
+
+             </div>
+             <div class="w-full h-[45%] flex flex-col">
+                  <div class="w-full h-[30%] flex justify-center gap-2 items-center">
+                    <p>Hamza Gbouri</p>
+                    <img class="h-4" src="https://cdn.sofifa.net/flags/it.png" alt="">
+
+                  </div>
+                  <div class="w-full h-full flex gap-8">
+                    <div class="h-full w-[50%] flex flex-col items-end text-xs">
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                    </div>
+                    <div class="h-full w-[50%] flex flex-col items-start text-xs">
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p>DIV</p>
+                        <p>85</p>
+                      </div>
+                    </div>
 
 
+                  </div>
+
+             </div>
+          </div>
+        </div>
+        
+        <div class="w-full h-full">
+            <h2 class="text-center text-2xl">Add a New Player</h2>
+            <form id="addPlayerForm" action="" class="flex flex-col justify-around h-full w-full">
+              <div class="flex w-4/5 h-3/5">
+              <div class="flex flex-col w-full h-full justify-around">
+                <label for="positionInput">Position</label>
+                <label for="nameInput">Name</label>
+                <label for="photoInput">Photo</label>
+                <label for="nationalityInput">Nationality</label>
+                <label for="flagInput">Flag</label>
+                <label for="clubInput">Club</label>
+                <label for="logoInput">Logo</label>
+              </div>
+              <div class="flex flex-col w-full h-full justify-around ">
+                <select class="bg-[#161A1D] px-2 py-1 rounded-lg" name="positionList" id="positionList">
+                  <option value="" checked>Select a Position</option>
+                  <option value="GK">GK</option>
+                  <option value="CB">CB</option>
+                  <option value="LB">LB</option>
+                  <option value="RB">RB</option>
+                  <option value="CM">CM</option>
+                  <option value="CDM">CDM</option>
+                  <option value="LW">LW</option>
+                  <option value="RW">RW</option>
+                  <option value="ST">ST</option>
+                </select>
+                <input class="inputText" type="text" id="nameInput">
+                <input class="inputText" type="text" id="photoInput">
+                <input class="inputText" type="text" id="nationalityInput">
+                <input class="inputText" type="text" id="flagInput">
+                <input class="inputText" type="text" id="clubInput">
+                <input class="inputText" type="text" id="logoInput">
+              </div>
+            </div>
+          
+              <div class="flex  w-full  items-center gap-4">
+                  <div class="flex-col w-[40%] justify-center items-center gap-4">
+                      <p class="text-center">Player's Stats</p>
+                 
+                    <div id="stats-container" class="flex gap-4">
+                      <p class="text-[#ff0000]">Choose a position</p>                      
+                  </div>
+                </div>
+                <div class="w-full flex justify-center">
+                  <button class=" w-3/5 bg-[#0E4C82] px-2 rounded-md text-lg ">Add Player</button>
+                </div>
+              </div>
+                
+ 
+               
+            </form>
+        </div>
+        
+      </div>
+    
 
     </div>
     
 </div>
   
  
-        <script src="./script/script.js"></script>
+        <script src="../script/players.js"></script>
 </body> 
 </html>
