@@ -36,7 +36,7 @@ const playerContainer = document.getElementById("players-container");
              <div class="w-full h-[45%] flex flex-col">
                   <div class="w-full h-[30%] flex justify-center gap-2 items-center">
                     <p>${player.name}</p>
-                    <img class="h-4" src="${player.photo}" alt="">
+                    <img class="h-4" src="${player.flag}" alt="">
 
                   </div>
                   <div class="w-full h-full flex gap-8">
@@ -173,4 +173,22 @@ positionInputForm.addEventListener("change", function(){
         
         `
     }
+})
+photoInputForm.addEventListener('keyup', function(){
+    if(photoInputForm.value==""){
+         document.getElementById('playerImageCard').innerHTML=`<img class=" w-full relative right-4" src="../img/none.png" alt="">`
+    }
+    else {
+         document.getElementById('playerImageCard').innerHTML=`<img class=" w-full relative right-4" src="${photoInputForm.value}" alt="">`
+    }
+   
+})
+nameInputForm.addEventListener('keyup', function(){
+    if(nameInputForm.value==""){
+         document.getElementById('playerNameCard').innerHTML=`<p id="playerNameCard">Player Name</p>`
+    }
+    else {
+         document.getElementById('playerNameCard').innerHTML=`<p id="playerNameCard">${nameInputForm.value}</p>`
+    }
+   
 })
