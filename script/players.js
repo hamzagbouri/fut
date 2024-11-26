@@ -239,7 +239,9 @@ function statsEventListeners(){
 showAllPlayers(players)
 
 function showModal(id=null){
+
   const modal = document.getElementById('modal')
+  addPlayerForm.reset()
   modal.style.display='flex'
   let index;
    
@@ -249,25 +251,127 @@ function showModal(id=null){
     console.log(p)
     document.getElementById("modal-title").innerText='Edit'
     document.getElementById("playerPositionCard").innerText= positionInputForm.value= p[0].position
-        document.getElementById('stats1').innerText = 'PAC'
+        
+        if(p[0].position == 'GK'){
+          document.getElementById('stats1').innerText = 'DIV'
+          document.getElementById('stats2').innerText = 'HAN'
+          document.getElementById('stats3').innerText = 'KIC'
+          document.getElementById('stats4').innerText = 'REF'
+          document.getElementById('stats5').innerText = 'SPE'
+          document.getElementById('stats6').innerText = 'POS'
+          document.getElementById('stats-container').innerHTML= `
+        <div  class="w-full flex flex-col items-end gap-2">
+                        <div class="flex gap-2">
+                          <label for="stats1Input">DIV</label>
+                          <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                        </div>
+                        <div class="flex gap-2">
+                          <label for="stats2Input">HAN</label>
+                          <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                        </div>
+                        <div class="flex gap-2">
+                          <label for="stats3Input">KIC</label>
+                          <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                        </div>
+                
+                      </div>
+                      <div class="w-full flex flex-col gap-2 ">
+                        <div class="flex gap-2">
+                          <label for="stats4Input">REF</label>
+                          <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                        </div>
+                        <div class="flex gap-2">
+                          <label for="stats5Input">SPE</label>
+                          <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                        </div>
+                        <div class="flex gap-2">
+                          <label for="stats6Input">POS</label>
+                          <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                        </div>
+                      </div>  
+                      
+        
+        `
+        const stats1InputForm = document.getElementById('stats1Input')
+        const stats2InputForm = document.getElementById('stats2Input')
+        const stats3InputForm = document.getElementById('stats3Input')
+        const stats4InputForm = document.getElementById('stats4Input')
+        const stats5InputForm = document.getElementById('stats5Input')
+        const stats6InputForm = document.getElementById('stats6Input')
+        document.getElementById('stats1Area').innerText = stats1InputForm.value = p[0].diving
+        document.getElementById('stats2Area').innerText = stats2InputForm.value = p[0].handling
+        document.getElementById('stats3Area').innerText = stats3InputForm.value = p[0].kicking
+        document.getElementById('stats4Area').innerText = stats4InputForm.value = p[0].reflexes
+        document.getElementById('stats5Area').innerText = stats5InputForm.value = p[0].speed
+        document.getElementById('stats6Area').innerText = stats6InputForm.value = p[0].positioning
+        }
+        else {
+          document.getElementById('stats1').innerText = 'PAC'
         document.getElementById('stats2').innerText = 'SHO'
         document.getElementById('stats3').innerText = 'PAS'
         document.getElementById('stats4').innerText = 'DRI'
         document.getElementById('stats5').innerText = 'DEF'
         document.getElementById('stats6').innerText = 'PHY'
-        // document.getElementById('stats1Area').innerText = stats1InputForm.value = p[0].pace
-        // document.getElementById('stats2Area').innerText = stats2InputForm.value = p[0].shooting
-        // document.getElementById('stats3Area').innerText = stats3InputForm.value = p[0].passing
-        // document.getElementById('stats4Area').innerText = stats4InputForm.value = p[0].dribbling
-        // document.getElementById('stats5Area').innerText = stats5InputForm.value = p[0].defending
-        // document.getElementById('stats6Area').innerText = stats6InputForm.value = p[0].physical
+          document.getElementById('stats-container').innerHTML= `
+          <div  class="w-full flex flex-col items-end gap-2">
+                          <div class="flex gap-2">
+                            <label for="stats1Input">PAC</label>
+                            <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          </div>
+                          <div class="flex gap-2">
+                            <label for="stats2Input">SHO</label>
+                            <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          </div>
+                          <div class="flex gap-2">
+                            <label for="stats3Input">PAS</label>
+                            <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          </div>
+                  
+                        </div>
+                        <div class="w-full flex flex-col gap-2 ">
+                          <div class="flex gap-2">
+                            <label for="stats4Input">DRI</label>
+                            <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          </div>
+                          <div class="flex gap-2">
+                            <label for="stats5Input">DEF</label>
+                            <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          </div>
+                          <div class="flex gap-2">
+                            <label for="stats6Input">PHY</label>
+                            <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                          </div>
+                        </div>  
+          
+          `
+          const stats1InputForm = document.getElementById('stats1Input')
+          const stats2InputForm = document.getElementById('stats2Input')
+          const stats3InputForm = document.getElementById('stats3Input')
+          const stats4InputForm = document.getElementById('stats4Input')
+          const stats5InputForm = document.getElementById('stats5Input')
+          const stats6InputForm = document.getElementById('stats6Input')
+          document.getElementById('stats1Area').innerText = stats1InputForm.value = p[0].pace
+          document.getElementById('stats2Area').innerText = stats2InputForm.value = p[0].shooting
+          document.getElementById('stats3Area').innerText = stats3InputForm.value = p[0].passing
+          document.getElementById('stats4Area').innerText = stats4InputForm.value = p[0].dribbling
+          document.getElementById('stats5Area').innerText = stats5InputForm.value = p[0].defending
+          document.getElementById('stats6Area').innerText = stats6InputForm.value = p[0].physical
+        }
+        statsEventListeners();
+       
         document.getElementById('playerImageCard').setAttribute('src', p[0].photo)
         document.getElementById("playerImageCard").className="w-24 relative right-4"
         document.getElementById('playerFlagCard').setAttribute('src', p[0].flag)
         document.getElementById('playerLogoCard').setAttribute('src', p[0].logo)
         document.getElementById('playerNameCard').innerText=p[0].name
         document.getElementById('playerRateCard').innerText=p[0].rating
-       
+        nameInputForm.value=p[0].name
+        nationalityInputForm.value=p[0].nationality
+        flagInputForm.value=p[0].flag
+        logoInputForm.value=p[0].logo
+        photoInputForm.value=p[0].photo
+        clubInputForm.value=p[0].club
+        rateInputForm.value=p[0].rating
 
 
         
