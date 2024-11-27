@@ -1,4 +1,10 @@
 
+let stats1InputForm
+let stats2InputForm
+let stats3InputForm
+let stats4InputForm
+let stats5InputForm
+let stats6InputForm
 
 
 const players  = JSON.parse(localStorage.getItem('players'))
@@ -18,7 +24,108 @@ players.forEach(player => {
     id=player.id
   }
 } )
+addPlayerForm.addEventListener('submit',function(event){
+  event.preventDefault();
+  console.log('clicked')
+  handleSubmit(event);
+})
 
+let edit = false;
+let playerIdToEdit = null;
+function handleSubmit(){
+  statsEventListeners();
+  console.log(stats2InputForm)
+  if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()=="" || stats1InputForm.value.trim()=="" || stats2InputForm.value.trim()=="" || stats3InputForm.value.trim()=="" || stats4InputForm.value.trim()=="" || stats5InputForm.value.trim()=="" || stats6InputForm.value.trim()==""   ){
+    document.getElementById('alter').className='slide-right'
+    setTimeout(()=> {
+    document.getElementById('alter').className='hidden'
+    },2000)
+   }
+   else {
+    console.log(edit)
+    let player ={
+      name: nameInputForm.value,
+      photo: photoInputForm.value,
+      position: positionInputForm.value,
+      nationality: nationalityInputForm.value,
+      flag: flagInputForm.value,
+      club: clubInputForm.value,
+      logo: logoInputForm.value,
+      rating: rateInputForm.value,      
+    }
+    if(player.position == "GK"){
+      player.diving=stats1InputForm.value;
+      player.handling=stats2InputForm.value;
+      player.kicking=stats3InputForm.value;
+      player.reflexes=stats4InputForm.value;
+      player.speed=stats5InputForm.value;
+      player.positioning=stats6InputForm.value;
+    }else{
+      player.pace=stats1InputForm.value;
+      player.shooting=stats2InputForm.value;
+      player.passing=stats3InputForm.value;
+      player.dribbling=stats4InputForm.value;
+      player.defending=stats5InputForm.value;
+      player.physical=stats6InputForm.value;
+    }
+   if(edit){
+    localStorage.getItem('players')
+      player.id = playerIdToEdit
+      let playerIndexToEdit
+      console.log("id to edit", playerIdToEdit)
+      players.forEach((p,index) => {
+        if(p.id == playerIdToEdit)
+          playerIndexToEdit = index;
+      })
+      console.log("player to edit",players[playerIndexToEdit])
+      console.log("new player", player)
+      players[playerIndexToEdit] = player
+      console.log('log', players[playerIndexToEdit])
+      localStorage.setItem("players", JSON.stringify(players))
+      console.log(players)
+      showAllPlayers(players);
+      modal.style.display='none'
+      console.log("aa")
+
+   }
+   else {
+   player.id = ++id;
+    console.log(player)
+    players.push(player)
+    localStorage.setItem('players', JSON.stringify(players))
+    modal.style.display="none"
+    showAllPlayers(players)
+
+   }
+  
+}
+}
+
+ function resetModal(){
+  document.getElementById('stats-container').innerHTML= `
+  <p class="text-[#ff0000]">Choose a Position</p>
+  
+  `
+  document.getElementById("playerPositionCard").innerText='POS'
+  document.getElementById('stats1').innerText = 'STS'
+  document.getElementById('stats2').innerText = 'STS'
+  document.getElementById('stats3').innerText = 'STS'
+  document.getElementById('stats4').innerText = 'STS'
+  document.getElementById('stats5').innerText = 'STS'
+  document.getElementById('stats6').innerText = 'STS'
+  document.getElementById('stats1Area').innerText = 'XX'
+  document.getElementById('stats2Area').innerText = 'XX'
+  document.getElementById('stats3Area').innerText = 'XX'
+  document.getElementById('stats4Area').innerText = 'XX'
+  document.getElementById('stats5Area').innerText = 'XX'
+  document.getElementById('stats6Area').innerText = 'XX'
+  document.getElementById('playerImageCard').setAttribute('src', '../img/none.png')
+  document.getElementById("playerImageCard").className="w-full relative right-4"
+  document.getElementById('playerFlagCard').setAttribute('src', '../img/image.png')
+  document.getElementById('playerLogoCard').setAttribute('src', '../img/image.png')
+  document.getElementById('playerRateCard').innerText= 'RT'
+  document.getElementById('playerNameCard').innerText= 'Player Name'
+}
 
 
 const playerContainer = document.getElementById("players-container");
@@ -95,7 +202,7 @@ function showAllPlayers (players){
     })
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', function(){
-        console.log(card.getAttribute('dataset'))
+        console.log('dataset',card.getAttribute('dataset'))
         showModal(card.getAttribute('dataset'))
       })
     })
@@ -104,12 +211,12 @@ function showAllPlayers (players){
 
 
 function statsEventListeners(){
-  const stats1InputForm = document.getElementById('stats1Input')
-  const stats2InputForm = document.getElementById('stats2Input')
-  const stats3InputForm = document.getElementById('stats3Input')
-  const stats4InputForm = document.getElementById('stats4Input')
-  const stats5InputForm = document.getElementById('stats5Input')
-  const stats6InputForm = document.getElementById('stats6Input')
+  stats1InputForm = document.getElementById('stats1Input')
+   stats2InputForm = document.getElementById('stats2Input')
+   stats3InputForm = document.getElementById('stats3Input')
+   stats4InputForm = document.getElementById('stats4Input')
+   stats5InputForm = document.getElementById('stats5Input')
+   stats6InputForm = document.getElementById('stats6Input')
   stats1InputForm.addEventListener('keyup', function(){
     if(stats1InputForm.value > 100 || stats1InputForm.value<0)
     {
@@ -188,69 +295,50 @@ function statsEventListeners(){
     }
    
   })
-  document.getElementById('from-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-     if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()=="" || stats1InputForm.value.trim()=="" || stats2InputForm.value.trim()=="" || stats3InputForm.value.trim()=="" || stats4InputForm.value.trim()=="" || stats5InputForm.value.trim()=="" || stats6InputForm.value.trim()==""   ){
-      document.getElementById('alter').className='slide-right'
-      setTimeout(()=> {
-      document.getElementById('alter').className='hidden'
-      },2000)
-     }
-     else {
-      let player ={
-        id: ++id,
-        name: nameInputForm.value,
-        photo: photoInputForm.value,
-        position: positionInputForm.value,
-        nationality: nationalityInputForm.value,
-        flag: flagInputForm.value,
-        club: clubInputForm.value,
-        logo: logoInputForm.value,
-        rating: rateInputForm.value,      
-      }
-      if(player.position == "GK"){
-        player.diving=stats1InputForm.value;
-        player.handling=stats2InputForm.value;
-        player.kicking=stats3InputForm.value;
-        player.reflexes=stats4InputForm.value;
-        player.speed=stats5InputForm.value;
-        player.positioning=stats6InputForm.value;
-      }else{
-        player.pace=stats1InputForm.value;
-        player.shooting=stats2InputForm.value;
-        player.passing=stats3InputForm.value;
-        player.dribbling=stats4InputForm.value;
-        player.defending=stats5InputForm.value;
-        player.physical=stats6InputForm.value;
-      }
-      console.log(player)
-      players.push(player)
-      
-      localStorage.setItem('players', JSON.stringify(players))
-      modal.style.display="none"
-      showAllPlayers(players)
+  
 
-     }
-    
-    
-  })
+  
+
+
 }
-
+document.getElementById('delete-btn').addEventListener('click', function (event){
+  event.preventDefault();
+  let playerIndexToEdit
+        console.log("id to edit", playerIdToEdit)
+        players.forEach((p,index) => {
+          if(p.id == playerIdToEdit)
+            playerIndexToEdit = index;
+        })
+        players.splice(playerIndexToEdit,1)
+        console.log(players)
+        localStorage.setItem("players", JSON.stringify(players))
+        showAllPlayers(players)
+        modal.style.display='none'
+  
+})  
 showAllPlayers(players)
 
-function showModal(id=null){
-
+function showModal(idd=null){
+  console.log(id)
+  resetModal();
   const modal = document.getElementById('modal')
   addPlayerForm.reset()
   modal.style.display='flex'
   let index;
-   
-  if(id){
-    let p = players.filter(player => player.id == id)
+  document.getElementById('delete-btn').style.display='none'
+  document.getElementById('form-btn').innerText='Add Player'
+  edit=false;
+  if(idd){
+    playerIdToEdit = idd;
+    edit=true;
+    let p = players.filter(player => player.id == idd)
    
     console.log(p)
     document.getElementById("modal-title").innerText='Edit'
     document.getElementById("playerPositionCard").innerText= positionInputForm.value= p[0].position
+    document.getElementById('delete-btn').style.display='block'
+    document.getElementById('form-btn').innerText='Modify Player'
+
         
         if(p[0].position == 'GK'){
           document.getElementById('stats1').innerText = 'DIV'
@@ -292,18 +380,16 @@ function showModal(id=null){
                       
         
         `
-        const stats1InputForm = document.getElementById('stats1Input')
-        const stats2InputForm = document.getElementById('stats2Input')
-        const stats3InputForm = document.getElementById('stats3Input')
-        const stats4InputForm = document.getElementById('stats4Input')
-        const stats5InputForm = document.getElementById('stats5Input')
-        const stats6InputForm = document.getElementById('stats6Input')
+       statsEventListeners();
         document.getElementById('stats1Area').innerText = stats1InputForm.value = p[0].diving
         document.getElementById('stats2Area').innerText = stats2InputForm.value = p[0].handling
         document.getElementById('stats3Area').innerText = stats3InputForm.value = p[0].kicking
         document.getElementById('stats4Area').innerText = stats4InputForm.value = p[0].reflexes
         document.getElementById('stats5Area').innerText = stats5InputForm.value = p[0].speed
         document.getElementById('stats6Area').innerText = stats6InputForm.value = p[0].positioning
+        
+          
+
         }
         else {
           document.getElementById('stats1').innerText = 'PAC'
@@ -358,7 +444,6 @@ function showModal(id=null){
           document.getElementById('stats6Area').innerText = stats6InputForm.value = p[0].physical
         }
         statsEventListeners();
-       
         document.getElementById('playerImageCard').setAttribute('src', p[0].photo)
         document.getElementById("playerImageCard").className="w-24 relative right-4"
         document.getElementById('playerFlagCard').setAttribute('src', p[0].flag)
@@ -373,17 +458,15 @@ function showModal(id=null){
         clubInputForm.value=p[0].club
         rateInputForm.value=p[0].rating
 
-
-        
-
-
-
-
-
   }else{
     document.getElementById("modal-title").innerText='Add New Player'
+    document.getElementById('stats-container').innerHTML= `
+        <p class="text-[#ff0000]">Choose a Position</p>
 
+        `
   }
+ 
+  
 
 }
 filterPosition.addEventListener('change', function(){
@@ -564,14 +647,16 @@ rateInputForm.addEventListener('keyup', function(){
 
 
 
-if(positionInputForm.value.trim() == ""){
-  document.getElementById('from-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-     if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()==""   ){
-      document.getElementById('alter').className='slide-right'
-      setTimeout(()=> {
-      document.getElementById('alter').className='hidden'
-      },2000)
-     }})
-}
+// if(positionInputForm.value.trim() == ""){
+//   document.getElementById('form-btn').addEventListener('click', function(event) {
+//     event.preventDefault();
+//      if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()==""   ){
+//       document.getElementById('alter').className='slide-right'
+//       setTimeout(()=> {
+//       document.getElementById('alter').className='hidden'
+//       },2000)
+//      }})
+// }
+
+
 

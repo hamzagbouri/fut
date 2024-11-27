@@ -98,7 +98,9 @@
   </div>
   <div class="min-h-screen h-full w-full bg-[url('../img/bg.png')] bg-cover bg-no-repeat bg-black   py-8 px-8 ">
         <div class="flex justify-between w-full h-16 items-center px-4 ">
-            <div> <button onclick="showModal()" class="bg-[#0E4C82] px-2 rounded-md ">New Player</button></div>
+            <div> <button onclick="showModal()" class="bg-[#0E4C82] px-2 rounded-md ">New Player</button>
+              
+            </div>
             <div class="flex gap-2  items-center  ">
                 <div>
                     <p>Filter BY: 
@@ -240,8 +242,10 @@
                       <p class="text-[#ff0000]">Choose a position</p>                      
                   </div>
                 </div>
-                <div class="w-full flex justify-center">
-                  <button id="from-btn" class=" w-3/5 bg-[#0E4C82] px-2 rounded-md text-lg ">Add Player</button>
+                <div id="form-btn-container" class="w-full  flex gap-2 flex-col justify-end items-center">
+                  <button id="form-btn" class=" w-3/5 bg-[#0E4C82] px-2 rounded-md text-lg ">Add Player</button>
+                  <button id="delete-btn"  class=" w-3/5 bg-[#ff0000] px-2 block rounded-md ">Delete Player</button>
+
                 </div>
               </div>
                 
