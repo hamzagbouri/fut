@@ -196,6 +196,20 @@ function showPlayersOnTerrain(players){
 
     })
 }
+function deletePlayer(idd){
+    let i = squadPlayers.findIndex(player=> player.id == idd)
+    console.log(i)
+    squadPlayers.splice(i,1)
+    localStorage.setItem('squadPlayers', JSON.stringify(squadPlayers))
+    i = elevenPlayers.findIndex(player=> player.id == idd)
+    console.log(i)
+    elevenPlayers.splice(i,1)
+    showP(elevenPlayers)
+
+    localStorage.setItem('elevenPlayers', JSON.stringify(elevenPlayers))
+ 
+    showReservePlayers(squadPlayers)
+}
 function showReservePlayers(list){
     document.getElementById('players-list').innerHTML = ``
     console.log(list)
@@ -210,6 +224,8 @@ function showReservePlayers(list){
               <p>${p.rating}</p>
               <p>${p.position}</p>
           </div>
+          <div class="m-4 cursor-pointer" onclick="deletePlayer(${p.id})"> <i class="fa-solid fa-trash" style="color: #bc2f2f;"></i>
+ </div>
         </div>
         `
 
