@@ -1,4 +1,6 @@
-
+// fetch('../script/data.json')
+// .then(data => data.json())
+// .then(data => localStorage.setItem("players", JSON.stringify(data.players)))
 let stats1InputForm
 let stats2InputForm
 let stats3InputForm
@@ -7,7 +9,7 @@ let stats5InputForm
 let stats6InputForm
 
 
-const players  = JSON.parse(localStorage.getItem('players'))
+const players  = JSON.parse(localStorage.getItem('players')) || []
 const filterPosition = document.getElementById('positions')
 const addPlayerForm = document.getElementById('addPlayerForm')
 const positionInputForm = document.getElementById('positionList')

@@ -19,11 +19,11 @@ if(RWCard.childNodes.length === 0)
 {
     console.log('empty')
 }
-
+let terrain = false;
 
 function showPlayer(player){
     return `
-         <div class="w-full h-full grid grid-cols-2 items-center  ">
+         <div  class="w-full h-full grid grid-cols-2 items-center  ">
               <div class=" mt-8 flex flex-col items-center justify-end w-full">
                   <p>${player.rating}</p>
                   <p>${player.position}</p>
@@ -78,8 +78,9 @@ function showP(players){
     players.forEach(element => {
    
         if(element.position == 'GK'){
+            document.getElementById('GK').setAttribute('data-id', element.id)
             document.getElementById('GK').innerHTML= `
-             <div class="w-full h-full grid grid-cols-2 items-center  ">
+             <div  class="w-full h-full grid grid-cols-2 items-center  ">
                   <div class=" mt-8 flex flex-col items-center justify-end w-full">
                       <p>${element.rating}</p>
                       <p>${element.position}</p>
@@ -131,32 +132,53 @@ function showP(players){
             `
         }
         else if ( element.position == 'ST'){
+            document.getElementById('ST').setAttribute('data-id', element.id)
             document.getElementById("ST").innerHTML = showPlayer(element)
         }
         else if ( element.position == 'LW'){
+            document.getElementById('LW').setAttribute('data-id', element.id)
+
             document.getElementById("LW").innerHTML = showPlayer(element)
         }
         else if ( element.position == 'LB'){
+            document.getElementById('LB').setAttribute('data-id', element.id)
+
             document.getElementById("LB").innerHTML = showPlayer(element)
         }
         else if ( element.position == 'RB'){
+            document.getElementById('RB').setAttribute('data-id', element.id)
+
             document.getElementById("RB").innerHTML = showPlayer(element)
         }
         else if ( element.position == 'RW'){
+            document.getElementById('RW').setAttribute('data-id', element.id)
+
             document.getElementById("RW").innerHTML = showPlayer(element)
         }
-        else if ( element.position == 'CM' ||element.position == 'CDM'){
-            document.getElementById("CM1").innerHTML = showPlayer(element)
-            document.getElementById("CM2").innerHTML = showPlayer(element)
-            document.getElementById("CM3").innerHTML = showPlayer(element)
-    
-    
+        else if ( element.position == 'CM'){
+            document.getElementById('CM').setAttribute('data-id', element.id)
+
+            document.getElementById("CM").innerHTML = showPlayer(element)
         }
-        else if ( element.position == 'CB' ){
-            document.getElementById("CB1").innerHTML = showPlayer(element)
-            document.getElementById("CB2").innerHTML = showPlayer(element)
-    
-    
+        else if ( element.position == 'CBL' ){
+            document.getElementById('CBL').setAttribute('data-id', element.id)
+
+            document.getElementById("CBL").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'CBR' ){
+            document.getElementById('CBR').setAttribute('data-id', element.id)
+
+            document.getElementById("CBR").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'CML' ){
+            document.getElementById('CML').setAttribute('data-id', element.id)
+
+            document.getElementById("CML").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'CMR' ){
+            document.getElementById('CMR').setAttribute('data-id', element.id)
+
+            document.getElementById("CMR").innerHTML = showPlayer(element)
         }
         
     });
@@ -169,6 +191,7 @@ function showPlayersOnTerrain(players){
         const div = document.createElement('div')
         div.className = 'card flex flex-col justify-between items-center text-md'
         div.innerHTML = showPlayers(element)
+
         playerContainer.appendChild(div)
 
     })
@@ -401,7 +424,64 @@ function showReserveList(){
     })
 
    }
-   function addPlayerToSquad(idd){
+  function addPlayerToSquad(idd){
+    if(terrain){
+
+        let fi = false
+        console.log("click")
+        let i;
+        squadPlayers.forEach((p, index) => {
+            if(p.id == idd)
+            {
+                i = index
+            }
+        })
+        const temp_id= document.getElementById(squadPlayers[i].position).getAttribute('data-id')
+
+        elevenPlayers.forEach(ep => {
+            if (ep.id == squadPlayers[i].id)
+            {fi = true}
+        })
+        if(fi)
+        {
+              showP(elevenPlayers)
+                document.getElementById('addToSquadModal').style.display="none"
+        }
+        else {
+            if(temp_id){
+                console.log(temp_id)
+                let ind ;
+                 elevenPlayers.forEach(p => {
+                     if (p.id == temp_id)
+                         console.log(p)
+                 })
+                elevenPlayers.forEach((p,index) => {
+                 
+                 if(p.id == temp_id ){
+                     ind = index
+                 }
+                })
+                elevenPlayers.splice(ind,1)
+                subPlayers.push(squadPlayers[ind])
+                 elevenPlayers.push(squadPlayers[i]);
+                 localStorage.setItem('elevenPlayers', JSON.stringify(elevenPlayers))
+                 console.log(elevenPlayers)
+                 showP(elevenPlayers)
+                 document.getElementById('addToSquadModal').style.display="none"
+            } else {
+                elevenPlayers.push(squadPlayers[i]);
+                localStorage.setItem('elevenPlayers', JSON.stringify(elevenPlayers))
+                console.log(elevenPlayers)
+                showP(elevenPlayers)
+                document.getElementById('addToSquadModal').style.display="none"
+              
+            }
+       
+        }
+   
+
+    }
+    else {
     let i;
     players.forEach((p, index) => {
         if(p.id == idd)
@@ -454,16 +534,18 @@ function showReserveList(){
     //         localStorage.setItem('subPlayers', JSON.stringify(subPlayers))
     //     }
     // } 
-
-    
     showPlayersOnModal();
+    }   
+    
 
    }
 
   
     
    function showAddToSquadModal(pos=null){
+    terrain = false
     if(pos){
+        terrain = true;
         document.getElementById('addToSquadModal').style.display="flex"
         document.getElementById('positions').style.display='none'
         document.getElementById('searchPlayer').style.display='none'
