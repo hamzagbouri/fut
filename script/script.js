@@ -11,9 +11,9 @@ const CM2Card = document.getElementById('CM2')
 const LBCard = document.getElementById('LB')
 const RBCard = document.getElementById('RB')
 const GKCard = document.getElementById('GK')
-let elevenPlayers = localStorage.getItem('elevenPlayers') ||[]
-let subPlayers  = localStorage.getItem('subPlayers') || []
-let squadPlayers  = localStorage.getItem('squadPlayers') || []
+let elevenPlayers = JSON.parse(localStorage.getItem('elevenPlayers')) ||  []
+let subPlayers  = JSON.parse(localStorage.getItem('subPlayers')) || []
+let squadPlayers  = JSON.parse(localStorage.getItem('squadPlayers')) ||[]
 console.log(RWCard.childNodes.length)
 if(RWCard.childNodes.length === 0)
 {
@@ -74,95 +74,138 @@ function showPlayer(player){
           </div>
     `
 }
-// players.forEach(element => {
+function showP(players){
+    players.forEach(element => {
    
-//     if(element.position == 'GK'){
-//         document.getElementById('GK').innerHTML= `
-//          <div class="w-full h-full grid grid-cols-2 items-center  ">
-//               <div class=" mt-8 flex flex-col items-center justify-end w-full">
-//                   <p>${element.rating}</p>
-//                   <p>${element.position}</p>
-//                   <img class="w-2 h-2" src="${element.logo}" alt="">
-//               </div>
-//               <div class="relative right-4 top-2 ">
-//                   <img class="h-12 w-16" src="${element.photo}" alt="">
-//               </div>
-             
-//           </div>
-//           <div class="w-full h-full flex flex-col justify-center mb-2">
-//               <div class="flex flex items-center justify-center gap-1 mt-[-10px]">
-//                   <p>${element.name}</p>
-//                   <img class="w-2 h-2" src="${element.flag}" alt="">
-//               </div>
-//               <div class=" flex w-full justify-evenly text-[6px]  	">
-//                   <div class="flex flex-col">
-//                       <div class="flex gap-1 leading-none ">
-//                           <p>DIV</p>
-//                           <p>${element.diving}</p>
-//                       </div>
-//                       <div class="flex gap-1 ">
-//                           <p>HAN</p>
-//                           <p>${element.handling}</p>
-//                       </div>
-//                       <div class="flex gap-1 leading-none">
-//                           <p>KIC</p>
-//                           <p>${element.kicking}</p>
-//                       </div>
-//                   </div>
-//                   <div class="flex flex-col">   
-//                       <div class="flex gap-1 leading-none">
-//                           <p>REF</p>
-//                           <p>${element.reflexes}</p>
-//                       </div>
-//                       <div class="flex gap-1">
-//                           <p>DEF</p>
-//                           <p>86</p>
-//                       </div>
-//                       <div class="flex gap-1 leading-none">
-//                           <p>PHY</p>
-//                           <p>98</p>
-//                       </div>
-
-//                   </div>
-//                   </div>
-           
-//           </div>
-//         `
-//     }
-//     else if ( element.position == 'ST'){
-//         document.getElementById("ST").innerHTML = showPlayer(element)
-//     }
-//     else if ( element.position == 'LW'){
-//         document.getElementById("LW").innerHTML = showPlayer(element)
-//     }
-//     else if ( element.position == 'LB'){
-//         document.getElementById("LB").innerHTML = showPlayer(element)
-//     }
-//     else if ( element.position == 'RB'){
-//         document.getElementById("RB").innerHTML = showPlayer(element)
-//     }
-//     else if ( element.position == 'RW'){
-//         document.getElementById("RW").innerHTML = showPlayer(element)
-//     }
-//     else if ( element.position == 'CM' ||element.position == 'CDM'){
-//         document.getElementById("CM1").innerHTML = showPlayer(element)
-//         document.getElementById("CM2").innerHTML = showPlayer(element)
-//         document.getElementById("CM3").innerHTML = showPlayer(element)
-
-
-//     }
-//     else if ( element.position == 'CB' ){
-//         document.getElementById("CB1").innerHTML = showPlayer(element)
-//         document.getElementById("CB2").innerHTML = showPlayer(element)
-
-
-//     }
+        if(element.position == 'GK'){
+            document.getElementById('GK').innerHTML= `
+             <div class="w-full h-full grid grid-cols-2 items-center  ">
+                  <div class=" mt-8 flex flex-col items-center justify-end w-full">
+                      <p>${element.rating}</p>
+                      <p>${element.position}</p>
+                      <img class="w-2 h-2" src="${element.logo}" alt="">
+                  </div>
+                  <div class="relative right-4 top-2 ">
+                      <img class="h-12 w-16" src="${element.photo}" alt="">
+                  </div>
+                 
+              </div>
+              <div class="w-full h-full flex flex-col justify-center mb-2">
+                  <div class="flex flex items-center justify-center gap-1 mt-[-10px]">
+                      <p>${element.name}</p>
+                      <img class="w-2 h-2" src="${element.flag}" alt="">
+                  </div>
+                  <div class=" flex w-full justify-evenly text-[6px]  	">
+                      <div class="flex flex-col">
+                          <div class="flex gap-1 leading-none ">
+                              <p>DIV</p>
+                              <p>${element.diving}</p>
+                          </div>
+                          <div class="flex gap-1 ">
+                              <p>HAN</p>
+                              <p>${element.handling}</p>
+                          </div>
+                          <div class="flex gap-1 leading-none">
+                              <p>KIC</p>
+                              <p>${element.kicking}</p>
+                          </div>
+                      </div>
+                      <div class="flex flex-col">   
+                          <div class="flex gap-1 leading-none">
+                              <p>REF</p>
+                              <p>${element.reflexes}</p>
+                          </div>
+                          <div class="flex gap-1">
+                              <p>DEF</p>
+                              <p>86</p>
+                          </div>
+                          <div class="flex gap-1 leading-none">
+                              <p>PHY</p>
+                              <p>98</p>
+                          </div>
     
-// });
-function showReserveList(){
-    document.getElementById("modal").style.display="block"
+                      </div>
+                      </div>
+               
+              </div>
+            `
+        }
+        else if ( element.position == 'ST'){
+            document.getElementById("ST").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'LW'){
+            document.getElementById("LW").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'LB'){
+            document.getElementById("LB").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'RB'){
+            document.getElementById("RB").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'RW'){
+            document.getElementById("RW").innerHTML = showPlayer(element)
+        }
+        else if ( element.position == 'CM' ||element.position == 'CDM'){
+            document.getElementById("CM1").innerHTML = showPlayer(element)
+            document.getElementById("CM2").innerHTML = showPlayer(element)
+            document.getElementById("CM3").innerHTML = showPlayer(element)
+    
+    
+        }
+        else if ( element.position == 'CB' ){
+            document.getElementById("CB1").innerHTML = showPlayer(element)
+            document.getElementById("CB2").innerHTML = showPlayer(element)
+    
+    
+        }
+        
+    });
 }
 const playerContainer = document.getElementById("players-container");
+
+function showPlayersOnTerrain(players){
+    players.forEach(element => {
+        playerContainer.innerHTML = ``
+        const div = document.createElement('div')
+        div.className = 'card flex flex-col justify-between items-center text-md'
+        div.innerHTML = showPlayers(element)
+        playerContainer.appendChild(div)
+
+    })
+}
+function showReservePlayers(list){
+    document.getElementById('players-list').innerHTML = ``
+    console.log(list)
+    list.forEach(p => {
+        document.getElementById('players-list').innerHTML += `
+         <div  class="w-[40%]  bg-[#161A1D] h-[90px] flex gap-4 rounded-md">
+          <div class="h-full w-[40%] flex justify-center">
+            <img class="h-16 w-16" src="${p.photo}" alt="">
+          </div>
+          <div class="h-4/5 w-[60%] flex flex-col justify-evenly ">
+              <p>${p.name}</p>
+              <p>${p.rating}</p>
+              <p>${p.position}</p>
+          </div>
+        </div>
+        `
+
+    })
+}
+const modal = document.getElementById('modal')
+function showAllPlayersListl(){
+    modal.style.display="block"
+    document.getElementById('modal-title').innerText ='All Players'
+    console.log(squadPlayers)
+    showReservePlayers(squadPlayers)
+
+}
+function showReserveList(){
+    document.getElementById('modal-title').innerText ='Reserve Players'
+    modal.style.display="block"
+    console.log(subPlayers)
+    showReservePlayers(subPlayers)
+}
     function showPlayers(player){
         return `
         <div class="w-full flex h-[55%]">
@@ -223,81 +266,73 @@ const playerContainer = document.getElementById("players-container");
              </div>
         `
     }
-    // players.forEach(element => {
-    //     playerContainer.innerHTML = ``
-    //     const div = document.createElement('div')
-    //     div.className = 'card flex flex-col justify-between items-center text-md'
-    //     div.innerHTML = showPlayers(element)
-    //     playerContainer.appendChild(div)
-
-    // })
+    
+    
    const allCards = document.querySelectorAll('.card')
    let filteredPlayers;
    allCards.forEach(card => {
     card.addEventListener("click", function(){
         if(card.getAttribute('id') == 'RW' ) 
         {
-            filteredPlayers= players.filter(player => player.position == 'RW')
-            console.log(filteredPlayers)
+            
+            showAddToSquadModal('RW')
+
         } 
         else if (card.getAttribute('id') == 'ST')
         {
-            filteredPlayers= players.filter(player => player.position == 'ST')
-            console.log(filteredPlayers)
+            showAddToSquadModal('ST')
 
         }
         else if (card.getAttribute('id') == 'LW')
             {
-                filteredPlayers= players.filter(player => player.position == 'LW')
-                console.log(filteredPlayers)
+                showAddToSquadModal('LW')
 
             }
-         else if (card.getAttribute('id') == 'CM1')
+         else if (card.getAttribute('id') == 'CML')
             {
-                filteredPlayers= players.filter(player => player.position == 'CM' && player.position=='CDM')
-                console.log(filteredPlayers)
+                showAddToSquadModal('CML')
 
             }
-         else if (card.getAttribute('id') == 'CM2')
+         else if (card.getAttribute('id') == 'CM')
             {
-                filteredPlayers= players.filter(player => player.position == 'CM' && player.position=='CDM')
-                console.log(filteredPlayers)
+                showAddToSquadModal('CM')
+
 
             }
-         else if (card.getAttribute('id') == 'CM3')
+         else if (card.getAttribute('id') == 'CMR')
             {
-                filteredPlayers= players.filter(player => player.position == 'CM' && player.position=='CDM')
-                console.log(filteredPlayers)
+                showAddToSquadModal('CMR')
+
 
             }
         else if (card.getAttribute('id') == 'LB')
             {
-                filteredPlayers= players.filter(player => player.position == 'LB')
-                console.log(filteredPlayers)
+                showAddToSquadModal('LB')
+
 
             }
         else if (card.getAttribute('id') == 'RB')
             {
-                filteredPlayers= players.filter(player => player.position == 'RB')
-                console.log(filteredPlayers)
+                showAddToSquadModal('RB')
+
 
             }
-        else if (card.getAttribute('id') == 'CB1')
+        else if (card.getAttribute('id') == 'CBL')
             {
-                filteredPlayers= players.filter(player => player.position == 'CB')
-                console.log(filteredPlayers)
+                showAddToSquadModal('CBL')
+
 
             }
-        else if (card.getAttribute('id') == 'CB2')
+        else if (card.getAttribute('id') == 'CBR')
             {
-                filteredPlayers= players.filter(player => player.position == 'CB')
-                console.log(filteredPlayers)
+                showAddToSquadModal('CBR')
+
 
             }
         else if (card.getAttribute('id') == 'GK')
             {
-                filteredPlayers= players.filter(player => player.position == 'GK')
-                console.log(filteredPlayers)
+                showAddToSquadModal('GK')
+
 
             }
     })
@@ -312,8 +347,8 @@ const playerContainer = document.getElementById("players-container");
     document.getElementById('playersArea').innerHTML = ``
     players.forEach(player => {
         document.getElementById('playersArea').innerHTML += `<div onclick="addPlayerToSquad(${player.id})" class="w-2/5  bg-[#161A1D] h-2/5 flex gap-4 rounded-md">
-          <div class="h-full w-[40%]">
-            <img class="h-18 w-18" src="${player.photo}" alt="">
+          <div class="h-full w-[40%] flex justify-center">
+            <img class="h-16 w-16" src="${player.photo}" alt="">
           </div>
           <div class="h-4/5 w-[60%] flex flex-col justify-evenly">
               <p>${player.name}</p>
@@ -324,10 +359,10 @@ const playerContainer = document.getElementById("players-container");
     })}
 
    }
-   let filtPlayer = []
+   let filtPlayer 
    let allPlayer = players
    function showPlayersOnModal(){
-   
+
        console.log(squadPlayers.length)
        if(squadPlayers.length == 0){
            filtPlayer = players
@@ -336,13 +371,14 @@ const playerContainer = document.getElementById("players-container");
        }
        else {
         filtPlayer = []
+        
            players.forEach(player => {
                let find = false;
                for(let i =0 ; i<squadPlayers.length;i++)
                {
-                console.log('f')
-                   if(squadPlayers[i][0].id == player.id){
-                    
+               
+                   if(squadPlayers[i].id == player.id){
+                    console.log('f')
                        find = true
                        break;
                    }
@@ -356,59 +392,129 @@ const playerContainer = document.getElementById("players-container");
            listPlayersOnModal(filtPlayer)
        }
    }
+   function ifExists(p){
+    elevenPlayers.forEach(player => {
+        if(player.position == p.position)
+        {
+            return true;
+        }
+    })
+
+   }
    function addPlayerToSquad(idd){
-    squadPlayers.push(players.filter(player => player.id == idd))
-    if (elevenPlayers.length<11){
-        elevenPlayers.push(players.filter(player => player.id == idd))
-    } else {
-        subPlayers.push(players.filter(player => player.id == idd))
-    }
+    let i;
+    players.forEach((p, index) => {
+        if(p.id == idd)
+        {
+            i = index
+        }
+    })
+    squadPlayers.push(players[i]);
+            localStorage.setItem('squadPlayers', JSON.stringify(squadPlayers))
+
     console.log(squadPlayers)
-    localStorage.setItem("squadPlayers", JSON.stringify(squadPlayers))
-    localStorage.setItem("elevenPlayers", JSON.stringify(elevenPlayers))
-    localStorage.setItem("subPlayers", JSON.stringify(subPlayers))
+    // if(squadPlayers.length != 0) {
+    //     localStorage.setItem('squadPlayers', JSON.stringify(squadPlayers))
+    //     if(elevenPlayers.length < 11 ){
+    //         document.getElementById('confirmModal').style.display="flex"
 
+    //         document.getElementById('yes-btn').addEventListener('click', clickedYes, { once: true })
+    //        document.getElementById('no-btn').addEventListener('click', clickedNo)
 
+    //        function clickedYes(){
+    //         if(ifExists(players[i])){
+    //             alert('player with this position already exists')
+    //             subPlayers.push(players[i])
+    //             localStorage.setItem('subPlayers', JSON.stringify(subPlayers))
+            
+    //         } else 
+    //         {
+    //             elevenPlayers.push(players[i])
+    //         localStorage.setItem('elevenPlayers', JSON.stringify(elevenPlayers))
+    //         showP(elevenPlayers)
+
+    //         }
+    //         document.getElementById('confirmModal').style.display="none"
+
+    //         showPlayersOnModal();
+
+            
+    //     }
+    //     function clickedNo(){
+    //         subPlayers.push(players[i])
+    //      localStorage.setItem('subPlayers', JSON.stringify(subPlayers))
+    //      showPlayersOnModal();
+    //      document.getElementById('confirmModal').style.display="none"
+
+    //     }
+            
+    //     } else
+    //     {
+    //         subPlayers.push(players[i])
+    //         localStorage.setItem('subPlayers', JSON.stringify(subPlayers))
+    //     }
+    // } 
+
+    
     showPlayersOnModal();
+
    }
 
   
     
-   function showAddToSquadModal(){
-  
-    document.getElementById('addToSquadModal').style.display="flex"
-    showPlayersOnModal()
-    const pos = document.getElementById("positions")
-    pos.addEventListener('change', function(){
-        if(pos.value == "")
-        {
-            filtPlayer = allPlayer;
-            listPlayersOnModal(filtPlayer)
-        }
-        else {
-            filtPlayer = filtPlayer.filter(player => player.position == pos.value)
-            listPlayersOnModal(filtPlayer)
+   function showAddToSquadModal(pos=null){
+    if(pos){
+        document.getElementById('addToSquadModal').style.display="flex"
+        document.getElementById('positions').style.display='none'
+        document.getElementById('searchPlayer').style.display='none'
 
-        }
-    })
-    const search = document.getElementById('searchPlayer')
-    search.addEventListener('keyup', function(){
-        let searchedPlayers = []
+        let temp_P = squadPlayers.filter(player => player.position == pos)
+        console.log(temp_P)
+        listPlayersOnModal(temp_P)
+    }
+    else
+    {
+        document.getElementById('addToSquadModal').style.display="flex"
+        document.getElementById('positions').style.display='block'
+        document.getElementById('searchPlayer').style.display='block'
 
-        const a = search.value.toUpperCase()
-        filtPlayer.forEach(player => {
-            const name = player.name.toUpperCase()
-            if(name.indexOf(a) > -1)
+
+        showPlayersOnModal()
+        const pos = document.getElementById("positions")
+        pos.addEventListener('change', function(){
+            if(pos.value == "")
             {
-                searchedPlayers.push(player)
-                listPlayersOnModal(searchedPlayers)
-
-            } else {
-                listPlayersOnModal(searchedPlayers)
-
+                filtPlayer = allPlayer;
+                listPlayersOnModal(filtPlayer)
+            }
+            else {
+                filtPlayer = filtPlayer.filter(player => player.position == pos.value)
+                listPlayersOnModal(filtPlayer)
+    
             }
         })
-
-
-    })
+        const search = document.getElementById('searchPlayer')
+        search.addEventListener('keyup', function(){
+            let searchedPlayers = []
+    
+            const a = search.value.trim().toUpperCase()
+            filtPlayer.forEach(player => {
+                const name = player.name.toUpperCase()
+                if(name.indexOf(a) > -1)
+                {
+                    searchedPlayers.push(player)
+                    listPlayersOnModal(searchedPlayers)
+    
+                } else {
+                    listPlayersOnModal(searchedPlayers)
+    
+                }
+            })
+    
+    
+        })
+    }
+  
+   
    }
+   showP(elevenPlayers)
