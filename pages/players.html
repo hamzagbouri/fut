@@ -84,7 +84,7 @@
     <header class="w-full h-20 bg-[#2D353C]">
         <nav class="flex w-full h-full items-center justify-between">
             <img class=" h-32 w-32 md:h-44 md:w-40" src="../img/logo.png" alt="logo">
-           <div class="flex gap-8 text-2xl">
+           <div class="flex gap-8 pr-8  md:text-2xl">
             <a href="../index.html" class="cursor-pointer">Squad</a>
             <a href="./players.html" class="cursor-pointer">Players</a>
             
@@ -92,13 +92,13 @@
             <input class="mr-8 bg-[#161A1D] pl-8 rounded-2xl hidden md:block md:w-64 h-8 outline-none" type="search" name="search" id="search" placeholder="Search player here...">
         </nav>
     </header>
-  <div class="h-20 w-full bg-[#161A1D] flex justify-between px-8">
+  <div class="h-20 w-full bg-[#161A1D] flex items-center justify-between px-8">
     <h1 class="md:text-[50px] tracking-[15px]	">SQUAD NAME</h1>
-    <p class=" pl-8 font-secondary text-lg flex items-center h-full">Build your dream XI, pick your team's next lineup, or plan your transfer window.</p>
+    <p class=" pl-8 font-secondary text-xs md:text-lg flex items-center h-full">Build your dream XI, pick your team's next lineup, or plan your transfer window.</p>
   </div>
-  <div class="min-h-screen h-full w-full bg-[url('../img/bg.png')] bg-cover bg-no-repeat bg-black   py-8 px-8 ">
+  <div class="min-h-screen h-full w-full bg-[url('../img/bg.png')] bg-cover bg-no-repeat bg-black   py-8 md:px-8 px-2 ">
         <div class="flex justify-between w-full h-16 items-center px-4 ">
-            <div> <button onclick="showModal()" class="bg-[#0E4C82] px-2 rounded-md ">New Player</button>
+            <div> <button onclick="showModal()" class="bg-[#0E4C82] px-2 rounded-md text-sm md:text-xl ">New Player</button>
               
             </div>
             <div class="flex gap-2  items-center  ">
@@ -126,12 +126,12 @@
             </div>
 
         </div>
-        <div id="players-container" class="w-full bg-[rgba(22,26,29,0.7)] h-full min-h-[500px] rounded-2xl mb-8 flex flex-wrap">
+        <div id="players-container" class="w-full bg-[rgba(22,26,29,0.7)] justify-center h-full min-h-[500px] rounded-2xl mb-8 flex flex-wrap">
         </div>  
      
   </div>
 
-  <div id="modal" class="modal bg-black bg-opacity-75 hidden  justify-center fixed inset-0 z-50 ">
+  <div id="modal" class="modal bg-black bg-opacity-75 flex  justify-center fixed inset-0 z-50 ">
     <div class="w-full m-8 h-4/5 border border-2 border-black rounded-3xl bg-[#2D353C] relative z-50 md:w-3/5 py-8  ">
       <svg class=" fill-primary absolute cursor-pointer top-0 right-0 pr-4 pt-2 w-10 h-8"    onclick="document.getElementById('modal').style.display='none'" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path   d="M20.48 3.512a11.97 11.97 0 0 0-8.486-3.514C5.366-.002-.007 5.371-.007 11.999c0 3.314 1.344 6.315 3.516 8.487A11.97 11.97 0 0 0 11.995 24c6.628 0 12.001-5.373 12.001-12.001c0-3.314-1.344-6.315-3.516-8.487m-1.542 15.427a9.8 9.8 0 0 1-6.943 2.876c-5.423 0-9.819-4.396-9.819-9.819a9.8 9.8 0 0 1 2.876-6.943a9.8 9.8 0 0 1 6.942-2.876c5.422 0 9.818 4.396 9.818 9.818a9.8 9.8 0 0 1-2.876 6.942z"/><path fill="#5051fa" d="m13.537 12l3.855-3.855a1.091 1.091 0 0 0-1.542-1.541l.001-.001l-3.855 3.855l-3.855-3.855A1.091 1.091 0 0 0 6.6 8.145l-.001-.001l3.855 3.855l-3.855 3.855a1.091 1.091 0 1 0 1.541 1.542l.001-.001l3.855-3.855l3.855 3.855a1.091 1.091 0 1 0 1.542-1.541l-.001-.001z"/></svg>
       <div class="w-full h-full flex ">
@@ -197,11 +197,11 @@
           </div>
         </div>
         
-        <div class="w-full h-full">
+        <div class="w-full h-full flex flex-col items-center">
             <h2 id="modal-title" class="text-center text-2xl">Add a New Player</h2>
-            <form id="addPlayerForm" action="" class="flex flex-col justify-around h-full w-full">
+            <form id="addPlayerForm" action="" class="flex flex-col items-center  justify-around h-full w-full">
               <div class="flex w-4/5 h-3/5">
-              <div class="flex flex-col gap-[9px] w-full h-full">
+              <div class="flex flex-col gap-[12px] w-full h-full">
                 <label for="positionInput">Position</label>
                 <label for="nameInput">Name</label>
                 <label for="photoInput">Photo</label>
@@ -239,7 +239,7 @@
             </div>
           
               <div class="flex  w-full  items-center gap-4">
-                  <div class="flex-col w-[40%] justify-center pt-4 items-center gap-4">
+                  <div class="md:flex-col flex w-[40%] justify-center pt-4 items-center gap-4">
                       <p class="text-center"></p>
                  
                     <div id="stats-container" class="flex gap-4">

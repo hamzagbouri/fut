@@ -1,6 +1,6 @@
-// fetch('../script/data.json')
-// .then(data => data.json())
-// .then(data => localStorage.setItem("players", JSON.stringify(data.players)))
+fetch('../script/data.json')
+.then(data => data.json())
+.then(data => localStorage.setItem("players", JSON.stringify(data.players)))
 let stats1InputForm
 let stats2InputForm
 let stats3InputForm
@@ -710,16 +710,16 @@ rateInputForm.addEventListener('keyup', function(){
 
 
 
-// if(positionInputForm.value.trim() == ""){
-//   document.getElementById('form-btn').addEventListener('click', function(event) {
-//     event.preventDefault();
-//      if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()==""   ){
-//       document.getElementById('alter').className='slide-right'
-//       setTimeout(()=> {
-//       document.getElementById('alter').className='hidden'
-//       },2000)
-//      }})
-// }
+if(positionInputForm.value.trim() == ""){
+  document.getElementById('form-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+     if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()==""   ){
+      document.getElementById('alter').className='slide-right'
+      setTimeout(()=> {
+      document.getElementById('alter').className='hidden'
+      },2000)
+     }})
+}
 
 
 
