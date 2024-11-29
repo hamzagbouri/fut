@@ -27,7 +27,7 @@ players.forEach(player => {
     id=player.id
   }
 } )
-addPlayerForm.addEventListener('submit',function(event){
+document.getElementById('form-btn').addEventListener('click',function(event){
   event.preventDefault();
   console.log('clicked')
   handleSubmit(event);
@@ -76,9 +76,12 @@ function handleSubmit(){
   statsEventListeners();
   console.log(stats2InputForm)
   if(positionInputForm.value.trim()=="" ||validInput('text', nameInputForm.value.trim()) ||validInput('lien', photoInputForm.value.trim()) ||validInput('text', nationalityInputForm.value.trim()) ||validInput('lien', flagInputForm.value.trim())  ||validInput('text', clubInputForm.value.trim()) || validInput('lien', logoInputForm.value.trim()) || validInput('rate', rateInputForm.value.trim()) || validInput('rate', stats1InputForm.value.trim())||  validInput('rate', stats2InputForm.value.trim()) ||  validInput('rate', stats3InputForm.value.trim()) ||  validInput('rate', stats4InputForm.value.trim()) ||  validInput('rate', stats5InputForm.value.trim()) ||  validInput('rate', stats6InputForm.value.trim())  ){
-    document.getElementById('alter').className='slide-right'
+    document.getElementById('alter').style.display='block'
+    document.getElementById('alter').classList.add('slide-right')
     setTimeout(()=> {
-    document.getElementById('alter').className='hidden'
+    document.getElementById('alter').classList.remove('slide-right')
+    document.getElementById('alter').style.display='none'
+
     },2000)
    }
    else {
