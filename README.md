@@ -48,8 +48,9 @@ L'objectif est de fournir une interface intuitive, des formulaires dynamiques et
 ---
 
 ## 🚀 **Installation et Utilisation**
-
-### **1. Cloner le repository**
+### **1. Lien du site hébergé**
+  https://hamzagbouri.github.io/fut/index.html
+### **2. Cloner le repository**
 ```bash
 git clone https://github.com/hamzagbouri/fut.git
 cd fut
