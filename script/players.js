@@ -8,7 +8,8 @@ let stats4InputForm
 let stats5InputForm
 let stats6InputForm
 
-
+let elevenPlayers = JSON.parse(localStorage.getItem('elevenPlayers')) ||  []
+let squadPlayers  = JSON.parse(localStorage.getItem('squadPlayers')) ||[]
 const players  = JSON.parse(localStorage.getItem('players')) || []
 const filterPosition = document.getElementById('positions')
 const addPlayerForm = document.getElementById('addPlayerForm')
@@ -116,11 +117,34 @@ function handleSubmit(){
         if(p.id == playerIdToEdit)
           playerIndexToEdit = index;
       })
+      
       console.log("player to edit",players[playerIndexToEdit])
       console.log("new player", player)
       players[playerIndexToEdit] = player
       console.log('log', players[playerIndexToEdit])
       localStorage.setItem("players", JSON.stringify(players))
+      // modifiy on squad players
+      playerIndexToEdit = null
+      squadPlayers.forEach((p,index) => {
+        if(p.id == playerIdToEdit)
+          playerIndexToEdit = index;
+      })
+      if(playerIdToEdit){
+        squadPlayers[playerIndexToEdit] = player
+      localStorage.setItem("squadPlayers", JSON.stringify(squadPlayers))
+      }
+      
+      // modifiy on eleven players
+      playerIndexToEdit = null
+      elevenPlayers.forEach((p,index) => {
+        if(p.id == playerIdToEdit)
+          playerIndexToEdit = index;
+      })
+      if(playerIdToEdit){
+        elevenPlayers[playerIndexToEdit] = player
+      localStorage.setItem("elevenPlayers", JSON.stringify(elevenPlayers))
+      }
+
       console.log(players)
       showAllPlayers(players);
       modal.style.display='none'
