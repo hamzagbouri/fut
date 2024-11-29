@@ -31,13 +31,50 @@ addPlayerForm.addEventListener('submit',function(event){
   console.log('clicked')
   handleSubmit(event);
 })
+function validInput(type, input){
+  if(type == 'rate'){
+     const re = /^(0[1-9]|[1-9][0-9]|100)$/
 
+    if(re.test(input))
+    {
+       return false;
+    }
+    else{
+      return true;
+    }
+
+  }
+  else if (type == 'text')
+  {
+    const re = /^[a-z A-Z]*$/
+
+    if(re.test(input))
+    {
+       return false;
+    }
+    else{
+      return true;
+    }
+  }
+  else if( type == 'lien')
+  {
+    const re = /^(https?:\/\/)/
+
+    if(re.test(input))
+    {
+       return false;
+    }
+    else{
+      return true;
+    }
+  }
+}
 let edit = false;
 let playerIdToEdit = null;
 function handleSubmit(){
   statsEventListeners();
   console.log(stats2InputForm)
-  if(positionInputForm.value.trim()=="" ||nameInputForm.value.trim()==""  ||photoInputForm.value.trim()==""  ||nationalityInputForm.value.trim()==""  ||flagInputForm.value.trim()==""  ||clubInputForm.value.trim()==""  || logoInputForm.value.trim()==""  || rateInputForm.value.trim()=="" || stats1InputForm.value.trim()=="" || stats2InputForm.value.trim()=="" || stats3InputForm.value.trim()=="" || stats4InputForm.value.trim()=="" || stats5InputForm.value.trim()=="" || stats6InputForm.value.trim()==""   ){
+  if(positionInputForm.value.trim()=="" ||validInput('text', nameInputForm.value.trim()) ||validInput('lien', photoInputForm.value.trim()) ||validInput('text', nationalityInputForm.value.trim()) ||validInput('lien', flagInputForm.value.trim())  ||validInput('text', clubInputForm.value.trim()) || validInput('lien', logoInputForm.value.trim()) || validInput('rate', rateInputForm.value.trim()) || validInput('rate', stats1InputForm.value.trim())||  validInput('rate', stats2InputForm.value.trim()) ||  validInput('rate', stats3InputForm.value.trim()) ||  validInput('rate', stats4InputForm.value.trim()) ||  validInput('rate', stats5InputForm.value.trim()) ||  validInput('rate', stats6InputForm.value.trim())  ){
     document.getElementById('alter').className='slide-right'
     setTimeout(()=> {
     document.getElementById('alter').className='hidden'
@@ -353,30 +390,30 @@ function showModal(idd=null){
         <div  class="w-full flex flex-col items-end gap-2">
                         <div class="flex gap-2">
                           <label for="stats1Input">DIV</label>
-                          <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats1Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats2Input">HAN</label>
-                          <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats2Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats3Input">KIC</label>
-                          <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats3Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                 
                       </div>
                       <div class="w-full flex flex-col gap-2 ">
                         <div class="flex gap-2">
                           <label for="stats4Input">REF</label>
-                          <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats4Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats5Input">SPE</label>
-                          <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats5Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats6Input">POS</label>
-                          <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                          <input id="stats6Input" class="w-12 text-center rounded-md" type="text"  >
                         </div>
                       </div>  
                       
@@ -404,30 +441,30 @@ function showModal(idd=null){
           <div  class="w-full flex flex-col items-end gap-2">
                           <div class="flex gap-2">
                             <label for="stats1Input">PAC</label>
-                            <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                            <input id="stats1Input" class="w-12 text-center rounded-md" type="text" >
                           </div>
                           <div class="flex gap-2">
                             <label for="stats2Input">SHO</label>
-                            <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                            <input id="stats2Input" class="w-12 text-center rounded-md" type="text" >
                           </div>
                           <div class="flex gap-2">
                             <label for="stats3Input">PAS</label>
-                            <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                            <input id="stats3Input" class="w-12 text-center rounded-md" type="text" >
                           </div>
                   
                         </div>
                         <div class="w-full flex flex-col gap-2 ">
                           <div class="flex gap-2">
                             <label for="stats4Input">DRI</label>
-                            <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                            <input id="stats4Input" class="w-12 text-center rounded-md" type="text" >
                           </div>
                           <div class="flex gap-2">
                             <label for="stats5Input">DEF</label>
-                            <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                            <input id="stats5Input" class="w-12 text-center rounded-md" type="text" >
                           </div>
                           <div class="flex gap-2">
                             <label for="stats6Input">PHY</label>
-                            <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                            <input id="stats6Input" class="w-12 text-center rounded-md" type="text"  >
                           </div>
                         </div>  
           
@@ -496,30 +533,30 @@ positionInputForm.addEventListener("change", function(){
         <div  class="w-full flex flex-col items-end gap-2">
                         <div class="flex gap-2">
                           <label for="stats1Input">DIV</label>
-                          <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats1Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats2Input">HAN</label>
-                          <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats2Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats3Input">KIC</label>
-                          <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats3Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                 
                       </div>
                       <div class="w-full flex flex-col gap-2 ">
                         <div class="flex gap-2">
                           <label for="stats4Input">REF</label>
-                          <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats4Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats5Input">SPE</label>
-                          <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats5Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats6Input">POS</label>
-                          <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                          <input id="stats6Input" class="w-12 text-center rounded-md" type="text"  >
                         </div>
                       </div>  
         
@@ -558,30 +595,30 @@ positionInputForm.addEventListener("change", function(){
         <div  class="w-full flex flex-col items-end gap-2">
                         <div class="flex gap-2">
                           <label for="stats1Input">PAC</label>
-                          <input id="stats1Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats1Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats2Input">SHO</label>
-                          <input id="stats2Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats2Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats3Input">PAS</label>
-                          <input id="stats3Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats3Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                 
                       </div>
                       <div class="w-full flex flex-col gap-2 ">
                         <div class="flex gap-2">
                           <label for="stats4Input">DRI</label>
-                          <input id="stats4Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats4Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats5Input">DEF</label>
-                          <input id="stats5Input" class="w-12 text-center rounded-md" type="number" min="1" max="100">
+                          <input id="stats5Input" class="w-12 text-center rounded-md" type="text" >
                         </div>
                         <div class="flex gap-2">
                           <label for="stats6Input">PHY</label>
-                          <input id="stats6Input" class="w-12 text-center rounded-md" type="number" min="1" max="100" >
+                          <input id="stats6Input" class="w-12 text-center rounded-md" type="text"  >
                         </div>
                       </div>  
         
