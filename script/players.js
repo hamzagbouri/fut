@@ -1,6 +1,6 @@
-fetch('../script/data.json')
-.then(data => data.json())
-.then(data => localStorage.setItem("players", JSON.stringify(data.players)))
+// fetch('../script/data.json')
+// .then(data => data.json())
+// .then(data => localStorage.setItem("players", JSON.stringify(data.players)))
 let stats1InputForm
 let stats2InputForm
 let stats3InputForm
@@ -112,7 +112,7 @@ function handleSubmit(){
       player.physical=stats6InputForm.value;
     }
    if(edit){
-    localStorage.getItem('players')
+    
       player.id = playerIdToEdit
       let playerIndexToEdit
       console.log("id to edit", playerIdToEdit)
@@ -208,7 +208,7 @@ const playerContainer = document.getElementById("players-container");
               </div>
               <div class="h-full w-full flex  justify-center items-end">
                 <div>
-                  <img class="h-24 w-16 relative right-4" src="${player.photo}" alt="">
+                  <img class="h-24 w-16  relative right-4" src="${player.photo}" alt="">
                 </div>
               </div>
 
