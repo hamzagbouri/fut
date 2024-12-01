@@ -1,6 +1,9 @@
-// fetch('../script/data.json')
-// .then(data => data.json())
-// .then(data => localStorage.setItem("players", JSON.stringify(data.players)))
+if(!localStorage.getItem('players'))
+{
+  fetch('../script/data.json')
+.then(data => data.json())
+.then(data => localStorage.setItem("players", JSON.stringify(data.players)))
+}
 let stats1InputForm
 let stats2InputForm
 let stats3InputForm
@@ -47,7 +50,7 @@ function validInput(type, input){
   }
   else if (type == 'text')
   {
-    const re = /^[a-z A-Z]*$/
+    const re = /^[a-z A-Z]+$/
 
     if(re.test(input))
     {
